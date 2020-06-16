@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <title>Homework</title>
+    <style>
+        .countdown-number {
+            background-color: coral;
+            padding: 50px;
+            position: absolute;
+            left: 50%;
+            top:50%;
+            transform: translate(-50%,-50%);
+            display: flex;
+        }
+        .countdown-text {
+            position: absolute;
+            right: 31px;
+            top: 74px;
+        }
+
+    </style>
+</head>
+<body>
+<!-- Создайте счетчик секунд, который начинает отчет с 1 и заканчивается на 30,
+также добавьте кнопки которые останавливают отчет, и запускают его заново и добавьте кнопку
+обнуляющую отcчет. Также попробуйте изменить код так чтобы отчет начинался с 30 и заканчивался на 1. -->
+<div class="countdown-number">
+    <div class="seconds">1</div>
+    <div class="countdown-text">Seconds</div>
+  </div>
+<button onclick="stop()">стоп</button>
+<button onclick="start()">пуск</button>
+<button onclick="newly()">заново</button>
+<button onclick="back()">обратно</button>
+  <script>  
+        var seconds = document.querySelector(".seconds");
+        var time;
+        var isPlay = false;
+      const start = () => {
+          if(isPlay) return
+          time =  setInterval(() => {
+              seconds.innerHTML++;
+              isPlay = true;
+              if(seconds.innerHTML === "30") {
+                stop();
+                }
+          }, 1000);
+      };
+      const stop = () => {
+          clearInterval(time);
+          isPlay = false;
+      };
+      const newly = () => {
+          stop();
+          seconds.innerHTML = 1;
+          start();
+      };
+      const back = () => {
+        seconds.innerHTML="30";
+        stop();
+        time = setInterval(() => {
+            seconds.innerHTML--;
+            if(seconds.innerHTML === "1") {
+                stop();
+                }
+            }, 1000);
+      };
+      
+      start();
+  </script>
+</body>
+</html>
